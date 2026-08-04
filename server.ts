@@ -46,15 +46,19 @@ async function startServer() {
         });
       }
 
-      const systemInstruction = `Eres 'Yoguis', la Asistente Virtual Oficial de la Gala Anual de los Premios Yoguis.
+      const systemInstruction = `Eres 'Yoguis', la Asistente Virtual Oficial Paisa de los Premios Yoguis 2026.
 Tu rol es responder llamadas telefónicas en vivo de espectadores, nominados y cinéfilos.
-Debes responder SIEMPRE en ESPAÑOL con un tono sumamente elegante, cálido, profesional y entusiasta (como una anfitriona estelar de alfombra roja).
-Tus respuestas deben ser breves, claras y fluidas (máximo 2 a 3 frases) porque estás hablando por teléfono.
+Debes responder SIEMPRE en ESPAÑOL con un auténtico, cálido, expresivo y carismático acento Y VOCABULARIO PAISA (de Medellín, Antioquia - Colombia).
+
+REGLAS DE PERSONALIDAD Y LENGUAJE PAISA (MEDELLÍN - ANTIOQUIA):
+- Utiliza expresiones y modismos paisas de manera natural, afectuosa y cercana, como: "¡Epa, pues!", "¡Qué más pues, parce!", "Ave María, qué elegancia", "Con muchísimo gusto, oís", "Claro que sí, mijito/a", "Un saludo bien bacano desde Medellín", "¡Listo, pues!", "¡De una!", "¡Ah bueno, parce!".
+- Habla con voseo paisa natural ("contame", "mirá", "querés", "sabés", "te cuento") mezclado con la extrema amabilidad, hospitalidad y entusiasmo característico de Antioquia.
+- Mantén las respuestas breves, alegres, claras y fluidas (máximo 2 a 3 frases) para que la llamada suene súper natural por teléfono.
 
 Contexto del Evento:
-- Nombre: Gala Anual de Premios de Cine & Artes 2026 (28ª Edición Anual)
-- Lugar: Gran Teatro de la Gala - Auditorio Principal
-- Transmisión: En vivo en alta definición con 14 categorías oficiales.
+- Nombre: Gala Anual de los Premios Yoguis 2026
+- Lugar: Gran Teatro de la Gala - Auditorio Principal (Medellín, Colombia)
+- Transmisión: En vivo con 14 categorías oficiales de cine y artes.
 - Categorías:
 1. Mejor Película (Nominados: El Silencio de la Luna, Horizonte Dorado, Ecos del Tiempo, La Última Frontera, Luces sobre la Ciudad)
 2. Mejor Dirección (Alejandro Íñiguez, Valeria Benítez, Gabriel Torres, Marina Silva)
@@ -71,19 +75,19 @@ Contexto del Evento:
 13. Mejor Montaje / Edición
 14. Mejor Sonido / Diseño Sonoro
 
-Si la persona te pregunta qué películas o personas recomendar o sobre los nominados, responde con naturalidad. Si te saludan o preguntan cómo estás, saluda con protocolo de gala.
-Recuerda: Sé conversacional, cordial y concisa.`;
+Si la persona te saluda o pregunta cómo estás: "¡Hola pues! ¿Qué más pues, parce? Te habla Yoguis desde Medellín. ¡Ave María! ¿De qué querés hablar hoy sobre los Premios Yoguis?"
+Si te piden recomendaciones o detalles de los nominados, responde con la alegría y espontaneidad paisa.`;
 
       // Build contents array for Gemini chat / generateContent
       const contentsParts = [];
 
       if (Array.isArray(history) && history.length > 0) {
         history.forEach((h: { role: string; text: string }) => {
-          contentsParts.push(`${h.role === 'user' ? 'Llamante' : 'Aura'}: ${h.text}`);
+          contentsParts.push(`${h.role === 'user' ? 'Llamante' : 'Yoguis'}: ${h.text}`);
         });
       }
 
-      contentsParts.push(`Llamante: ${userText || "Hola, ¿quién habla?"}`);
+      contentsParts.push(`Llamante: ${userText || "¡Hola, qué más pues!"}`);
 
       const promptString = contentsParts.join("\n");
 
@@ -93,30 +97,35 @@ Recuerda: Sé conversacional, cordial y concisa.`;
         contents: promptString,
         config: {
           systemInstruction,
-          temperature: 0.7,
+          temperature: 0.75,
         },
       });
 
-      const replyText = textResponse.text || "¡Bienvenido a la Gala de Premios 2026! ¿En qué categoría o nominado te gustaría profundizar hoy?";
+      const replyText = textResponse.text || "¡Epa, pues! Bienvenido a los Premios Yoguis 2026. Contame, ¿de qué película o nominados querés saber hoy?";
 
       // Try generating audio via Gemini TTS (gemini-3.1-flash-tts-preview)
       let audioBase64: string | null = null;
+      let mimeType: string = "audio/mp3";
 
       try {
         const ttsResponse = await ai.models.generateContent({
           model: "gemini-3.1-flash-tts-preview",
-          contents: [{ parts: [{ text: `En español, di amablemente: ${replyText}` }] }],
+          contents: [{ parts: [{ text: replyText }] }],
           config: {
             responseModalities: [Modality.AUDIO],
             speechConfig: {
               voiceConfig: {
-                prebuiltVoiceConfig: { voiceName: "Kore" },
+                prebuiltVoiceConfig: { voiceName: "Aoede" },
               },
             },
           },
         });
 
-        audioBase64 = ttsResponse.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data || null;
+        const inlineData = ttsResponse.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+        audioBase64 = inlineData?.data || null;
+        if (inlineData?.mimeType) {
+          mimeType = inlineData.mimeType;
+        }
       } catch (ttsErr) {
         console.warn("TTS generation failed or not supported, falling back to client-side speech synthesis:", ttsErr);
       }
@@ -124,6 +133,7 @@ Recuerda: Sé conversacional, cordial y concisa.`;
       return res.json({
         replyText,
         audioBase64,
+        mimeType,
       });
     } catch (error: any) {
       console.error("Error in AI Call Endpoint:", error);

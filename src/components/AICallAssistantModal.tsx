@@ -62,10 +62,10 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
     }
 
     // Dialing animation to connected state
-    const dialTimeout = setTimeout(() => {
+    const dialTimeout = setTimeout(async () => {
       setCallState('connected');
       
-      const welcomeText = `¡Hola! Bienvenido a la línea de atención en vivo de la ${EVENT_INFO.name}. Soy Aura, tu asistente virtual. Puedo informarte sobre las 14 categorías, nominados, predicciones o recomendarte películas. ¿De qué te gustaría hablar hoy?`;
+      const welcomeText = `¡Epa, pues! Bienvenido/a a la línea telefónica en vivo de los Premios Yoguis 2026. Te habla Yoguis, tu asistente virtual 100% paisa desde Medellín, Colombia. ¡Ave María, qué elegancia tenerte por acá! Te puedo contar todo sobre las 14 categorías, recomendarte películas o tomar tus predicciones. ¿Qué más pues, de qué querés hablar hoy, parce?`;
       
       const initialMessage: Message = {
         id: 'msg-0',
@@ -75,10 +75,33 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
       };
 
       setMessages([initialMessage]);
-      speakText(welcomeText, null, () => {
-        // Auto-activate microphone after greeting finishes
-        startListeningAuto();
-      });
+
+      try {
+        const res = await fetch('/api/call/speak', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userText: '¡Hola! Contesté la llamada.' }),
+        });
+        const data = await res.json();
+        const apiReply = data.replyText || welcomeText;
+        if (apiReply && apiReply !== welcomeText) {
+          setMessages([
+            {
+              id: 'msg-0',
+              sender: 'assistant',
+              text: apiReply,
+              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            },
+          ]);
+        }
+        speakText(apiReply, data.audioBase64, data.mimeType, () => {
+          startListeningAuto();
+        });
+      } catch (e) {
+        speakText(welcomeText, null, undefined, () => {
+          startListeningAuto();
+        });
+      }
     }, 1800);
 
     return () => clearTimeout(dialTimeout);
@@ -120,7 +143,7 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
         const recognition = new SpeechRecognition();
         recognition.continuous = false;
         recognition.interimResults = true;
-        recognition.lang = 'es-ES';
+        recognition.lang = 'es-CO';
 
         recognition.onresult = (event: any) => {
           let transcript = '';
@@ -160,7 +183,7 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
   };
 
   // Speak AI text response using audio base64 or SpeechSynthesis fallback
-  const speakText = (text: string, base64Audio?: string | null, onEndedCallback?: () => void) => {
+  const speakText = (text: string, base64Audio?: string | null, audioMime?: string, onEndedCallback?: () => void) => {
     if (isSpeakerMuted) {
       if (onEndedCallback) onEndedCallback();
       return;
@@ -182,13 +205,23 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
     // Try playing base64 audio if present
     if (base64Audio) {
       try {
-        const audio = new Audio(`data:audio/wav;base64,${base64Audio}`);
+        const mime = audioMime || 'audio/mp3';
+        const audio = new Audio(`data:${mime};base64,${base64Audio}`);
         audio.onended = () => {
           if (onEndedCallback) onEndedCallback();
         };
-        audio.play().catch(() => {
+        audio.onerror = (err) => {
+          console.warn('Audio element error, falling back to Web Speech synthesis:', err);
           fallbackSpeechSynthesis(text, onEndedCallback);
-        });
+        };
+
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.warn('Audio play failed, falling back to Web Speech synthesis:', err);
+            fallbackSpeechSynthesis(text, onEndedCallback);
+          });
+        }
         currentAudioSourceRef.current = audio;
         return;
       } catch (e) {
@@ -199,14 +232,14 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
     fallbackSpeechSynthesis(text, onEndedCallback);
   };
 
-  // Web Speech API fallback
+  // Web Speech API fallback with Paisa cadence and Colombian voice priority
   const fallbackSpeechSynthesis = (text: string, onEndedCallback?: () => void) => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'es-ES';
-      utterance.rate = 1.0;
-      utterance.pitch = 1.05;
+      utterance.lang = 'es-CO';
+      utterance.rate = 1.05; // Lively, warm Paisa rhythm
+      utterance.pitch = 1.08; // Expressive melodic pitch
 
       utterance.onend = () => {
         if (onEndedCallback) onEndedCallback();
@@ -216,11 +249,19 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
         if (onEndedCallback) onEndedCallback();
       };
 
-      // Select Spanish voice if available
+      // Select Colombian or Latin American Spanish voice if available
       const voices = window.speechSynthesis.getVoices();
-      const spanishVoice = voices.find((v) => v.lang.startsWith('es'));
-      if (spanishVoice) {
-        utterance.voice = spanishVoice;
+      const colombianVoice = voices.find((v) => 
+        v.lang === 'es-CO' || 
+        v.lang.startsWith('es_CO') || 
+        v.name.toLowerCase().includes('colombia') || 
+        v.name.toLowerCase().includes('salome') || 
+        v.name.toLowerCase().includes('sabina') || 
+        v.name.toLowerCase().includes('gonzalo')
+      );
+      const latinVoice = colombianVoice || voices.find((v) => v.lang.startsWith('es-MX') || v.lang.startsWith('es-419') || v.lang.startsWith('es-US') || v.lang.startsWith('es'));
+      if (latinVoice) {
+        utterance.voice = latinVoice;
       }
 
       window.speechSynthesis.speak(utterance);
@@ -290,8 +331,8 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
       };
 
       setMessages((prev) => [...prev, aiMsg]);
-      speakText(replyText, data.audioBase64, () => {
-        // Auto restart microphone after Aura finishes speaking
+      speakText(replyText, data.audioBase64, data.mimeType, () => {
+        // Auto restart microphone after Yoguis finishes speaking
         startListeningAuto();
       });
     } catch (err) {
@@ -308,7 +349,7 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
-      speakText(fallbackText, null, () => {
+      speakText(fallbackText, null, undefined, () => {
         startListeningAuto();
       });
     }
