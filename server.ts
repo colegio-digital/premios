@@ -87,9 +87,9 @@ Recuerda: Sé conversacional, cordial y concisa.`;
 
       const promptString = contentsParts.join("\n");
 
-      // Generate text answer with Gemini 3.6 Flash
+      // Generate text answer with Gemini 3.1 Flash Live Preview
       const textResponse = await ai.models.generateContent({
-        model: "gemini-3.6-flash",
+        model: "gemini-3.1-flash-live-preview",
         contents: promptString,
         config: {
           systemInstruction,
