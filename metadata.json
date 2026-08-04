@@ -1,0 +1,8 @@
+{
+  "name": "Gala de Premios - Categorías y Nominados",
+  "description": "Plataforma oficial de la Gala de Premios con 14 categorías, videos representativos de YouTube y presentación de nominados.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
