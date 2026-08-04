@@ -98,7 +98,7 @@ export default function App() {
   const totalVotesCount = Object.keys(selectedVotes).length;
 
   return (
-    <div className="min-h-screen bg-[#0B0C10] text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#0B0C10] text-slate-100 flex flex-col font-sans selection:bg-red-500 selection:text-slate-950">
       
       {/* Top Navbar */}
       <Navbar
@@ -128,13 +128,13 @@ export default function App() {
         
         {/* Search Results Summary Header if searching */}
         {searchQuery && (
-          <div className="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-amber-500/30 text-xs sm:text-sm">
+          <div className="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-red-500/30 text-xs sm:text-sm">
             <span>
-              Resultados para &ldquo;<strong className="text-amber-300">{searchQuery}</strong>&rdquo;: {filteredCategories.length} categorías encontradas.
+              Resultados para &ldquo;<strong className="text-red-300">{searchQuery}</strong>&rdquo;: {filteredCategories.length} categorías encontradas.
             </span>
             <button
               onClick={() => setSearchQuery('')}
-              className="text-amber-400 hover:underline font-bold"
+              className="text-red-400 hover:underline font-bold"
             >
               Mostrar todas las 14 categorías
             </button>
@@ -151,7 +151,7 @@ export default function App() {
             </p>
             <button
               onClick={() => setSearchQuery('')}
-              className="mt-4 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-colors"
+              className="mt-4 px-4 py-2 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 text-xs font-bold transition-colors"
             >
               Restablecer Búsqueda
             </button>
@@ -187,10 +187,10 @@ export default function App() {
       {showBackToTop && (
         <button
           onClick={handleScrollToTop}
-          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-xl shadow-amber-500/30 transition-all transform hover:scale-110 active:scale-95"
+          className="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-red-500 hover:bg-red-400 text-slate-950 font-bold shadow-xl shadow-red-500/30 transition-all transform hover:scale-110 active:scale-95"
           title="Volver arriba"
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-5 h-5 text-slate-950" />
         </button>
       )}
 

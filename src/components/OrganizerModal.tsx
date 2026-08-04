@@ -46,20 +46,20 @@ export const OrganizerModal: React.FC<OrganizerModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-3xl bg-slate-900 border border-blue-500/30 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="relative w-full max-w-3xl bg-slate-900 border border-red-500/30 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
         
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950/60">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold">
+            <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 font-bold">
               <FileCode className="w-5 h-5" />
             </div>
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <span className="text-blue-100">Guía para Organizadores: Configuración de Videos y Nominados</span>
+                <span className="text-red-100">Guía para Organizadores: Configuración de Videos y Nominados</span>
               </h3>
-              <p className="text-xs text-blue-200/70">
-                Instrucciones claras para reemplazar <code className="text-blue-300">youtubeId</code> y datos de las 14 categorías
+              <p className="text-xs text-red-200/70">
+                Instrucciones claras para reemplazar <code className="text-red-300">youtubeId</code> y datos de las 14 categorías
               </p>
             </div>
           </div>
@@ -77,16 +77,16 @@ export const OrganizerModal: React.FC<OrganizerModalProps> = ({
           
           {/* Step 1 */}
           <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800">
-            <div className="flex items-center gap-2 font-bold text-blue-400 mb-2">
-              <span className="w-6 h-6 rounded-full bg-blue-500 text-slate-950 text-xs flex items-center justify-center font-bold">
+            <div className="flex items-center gap-2 font-bold text-red-400 mb-2">
+              <span className="w-6 h-6 rounded-full bg-red-500 text-slate-950 text-xs flex items-center justify-center font-bold">
                 1
               </span>
               <span>Ubicación del Archivo de Datos</span>
             </div>
-            <p className="text-xs text-blue-200/90 leading-relaxed">
+            <p className="text-xs text-red-200/90 leading-relaxed">
               Toda la configuración de las 14 categorías, sus IDs de YouTube y sus nominados se encuentra centralizada en el archivo:
               <br />
-              <code className="text-blue-300 bg-slate-900 px-2 py-1 rounded mt-2 inline-block font-mono border border-slate-700">
+              <code className="text-red-300 bg-slate-900 px-2 py-1 rounded mt-2 inline-block font-mono border border-slate-700">
                 /src/data/categories.ts
               </code>
             </p>
@@ -94,30 +94,30 @@ export const OrganizerModal: React.FC<OrganizerModalProps> = ({
 
           {/* Step 2 */}
           <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800">
-            <div className="flex items-center gap-2 font-bold text-blue-400 mb-2">
-              <span className="w-6 h-6 rounded-full bg-blue-500 text-slate-950 text-xs flex items-center justify-center font-bold">
+            <div className="flex items-center gap-2 font-bold text-red-400 mb-2">
+              <span className="w-6 h-6 rounded-full bg-red-500 text-slate-950 text-xs flex items-center justify-center font-bold">
                 2
               </span>
               <span>¿Cómo obtener el `youtubeId` de un video de YouTube?</span>
             </div>
-            <p className="text-xs text-blue-200/90 leading-relaxed mb-3">
-              El <code className="text-blue-300 font-mono">youtubeId</code> es el código de 11 caracteres que aparece al final de la URL de cualquier video de YouTube:
+            <p className="text-xs text-red-200/90 leading-relaxed mb-3">
+              El <code className="text-red-300 font-mono">youtubeId</code> es el código de 11 caracteres que aparece al final de la URL de cualquier video de YouTube:
             </p>
-            <ul className="text-xs space-y-1.5 font-mono text-blue-300/80 bg-slate-900 p-3 rounded-lg border border-slate-800">
-              <li>• URL: https://www.youtube.com/watch?v=<span className="text-blue-300 font-bold underline">fmErhmOOLXU</span></li>
-              <li>• youtubeId actual: <span className="text-blue-300 font-bold">&apos;fmErhmOOLXU&apos;</span></li>
+            <ul className="text-xs space-y-1.5 font-mono text-red-300/80 bg-slate-900 p-3 rounded-lg border border-slate-800">
+              <li>• URL: https://www.youtube.com/watch?v=<span className="text-red-300 font-bold underline">fmErhmOOLXU</span></li>
+              <li>• youtubeId actual: <span className="text-red-300 font-bold">&apos;fmErhmOOLXU&apos;</span></li>
             </ul>
           </div>
 
           {/* Step 3 Example Code Snippet */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="font-bold text-xs uppercase tracking-wider text-blue-400">
+              <span className="font-bold text-xs uppercase tracking-wider text-red-400">
                 Ejemplo de Estructura para {targetCategory?.title}:
               </span>
               <button
                 onClick={handleCopySnippet}
-                className="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-blue-300 font-medium transition-colors border border-slate-700"
+                className="flex items-center gap-1.5 px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-red-300 font-medium transition-colors border border-slate-700"
               >
                 {copiedSnippet ? (
                   <>
@@ -133,7 +133,7 @@ export const OrganizerModal: React.FC<OrganizerModalProps> = ({
               </button>
             </div>
 
-            <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-blue-200/90 overflow-x-auto">
+            <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs font-mono text-red-200/90 overflow-x-auto">
               {codeExampleSnippet}
             </pre>
           </div>
@@ -144,7 +144,7 @@ export const OrganizerModal: React.FC<OrganizerModalProps> = ({
         <div className="p-4 border-t border-slate-800 bg-slate-950/60 flex justify-end">
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold text-xs transition-colors"
+            className="px-5 py-2 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 font-bold text-xs transition-colors"
           >
             Entendido, cerrar ventana
           </button>

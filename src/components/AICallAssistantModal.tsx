@@ -328,28 +328,28 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-lg animate-fade-in">
-      <div className="relative w-full max-w-lg bg-slate-900 border border-amber-500/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[85vh] max-h-[680px]">
+      <div className="relative w-full max-w-lg bg-slate-900 border border-red-500/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[85vh] max-h-[680px]">
         
         {/* Top Call Banner */}
         <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 p-4 border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-400 via-amber-500 to-amber-700 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-amber-500/20">
-                <Bot className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-red-400 via-red-500 to-rose-700 flex items-center justify-center text-slate-950 font-bold shadow-lg shadow-red-500/20">
+                <Bot className="w-5 h-5 text-slate-950" />
               </div>
               <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-slate-900 animate-pulse" />
             </div>
 
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-sm font-bold text-white">Aura • Asistente IA</h3>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 font-semibold uppercase tracking-wider">
+                <h3 className="text-sm font-bold text-white">Yoguis • Asistente IA</h3>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-400 border border-red-500/30 font-semibold uppercase tracking-wider">
                   Voz HD
                 </span>
               </div>
               <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
                 {callState === 'dialing' && (
-                  <span className="text-blue-400 animate-pulse">Conectando llamada...</span>
+                  <span className="text-red-400 animate-pulse">Conectando llamada...</span>
                 )}
                 {callState === 'connected' && (
                   <>
@@ -374,16 +374,16 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
         {/* Call Visualizer Waves Header */}
         <div className="bg-slate-950/70 border-b border-slate-800/80 px-4 py-3 flex items-center justify-between text-xs text-slate-400">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-blue-400" />
-            <span className="text-blue-200">Línea Telefónica Directa Gala 2026</span>
+            <Sparkles className="w-4 h-4 text-red-400" />
+            <span className="text-red-200">Línea Telefónica Directa Gala 2026</span>
           </div>
 
           {/* Animated Equalizer Waveform */}
           <div className="flex items-center gap-1">
-            <span className="w-1 h-3 bg-blue-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
-            <span className="w-1 h-5 bg-sky-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
-            <span className="w-1 h-2 bg-blue-300 rounded-full animate-bounce" />
-            <span className="w-1 h-4 bg-blue-500 rounded-full animate-bounce [animation-delay:-0.2s]" />
+            <span className="w-1 h-3 bg-red-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
+            <span className="w-1 h-5 bg-rose-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
+            <span className="w-1 h-2 bg-red-300 rounded-full animate-bounce" />
+            <span className="w-1 h-4 bg-red-500 rounded-full animate-bounce [animation-delay:-0.2s]" />
           </div>
         </div>
 
@@ -392,15 +392,15 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
           {callState === 'dialing' ? (
             <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-4">
               <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-blue-500/10 border-2 border-blue-500/40 flex items-center justify-center text-blue-400 animate-ping absolute inset-0" />
-                <div className="w-20 h-20 rounded-full bg-blue-500/20 border-2 border-blue-500/60 flex items-center justify-center text-blue-400 relative z-10">
-                  <PhoneCall className="w-8 h-8 text-blue-400" />
+                <div className="w-20 h-20 rounded-full bg-red-500/10 border-2 border-red-500/40 flex items-center justify-center text-red-400 animate-ping absolute inset-0" />
+                <div className="w-20 h-20 rounded-full bg-red-500/20 border-2 border-red-500/60 flex items-center justify-center text-red-400 relative z-10">
+                  <PhoneCall className="w-8 h-8 text-red-400" />
                 </div>
               </div>
               <div>
                 <p className="text-sm font-bold text-white">Estableciendo comunicación por voz...</p>
-                <p className="text-xs text-blue-300/80 mt-1">
-                  Conectando con el servidor estelar de la Gala de Premios
+                <p className="text-xs text-red-300/80 mt-1">
+                  Conectando con el servidor estelar de los Premios Yoguis
                 </p>
               </div>
             </div>
@@ -415,8 +415,8 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
                 >
                   <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold ${
                     msg.sender === 'user'
-                      ? 'bg-blue-500 text-slate-950'
-                      : 'bg-slate-800 text-blue-400 border border-blue-500/30'
+                      ? 'bg-red-500 text-slate-950'
+                      : 'bg-slate-800 text-red-400 border border-red-500/30'
                   }`}>
                     {msg.sender === 'user' ? <User className="w-4 h-4 text-slate-950" /> : <Bot className="w-4 h-4" />}
                   </div>
@@ -424,7 +424,7 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
                   <div>
                     <div className={`p-3 rounded-2xl ${
                       msg.sender === 'user'
-                        ? 'bg-blue-500 text-slate-950 font-medium rounded-tr-none shadow-md shadow-blue-500/10'
+                        ? 'bg-red-500 text-slate-950 font-medium rounded-tr-none shadow-md shadow-red-500/10'
                         : 'bg-slate-800/90 text-slate-100 rounded-tl-none border border-slate-700/80 shadow-md'
                     }`}>
                       <p className="leading-relaxed">{msg.text}</p>
@@ -438,12 +438,12 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
 
               {isThinking && (
                 <div className="flex gap-2 mr-auto max-w-[80%] items-center">
-                  <div className="w-7 h-7 rounded-full bg-slate-800 text-blue-400 border border-blue-500/30 flex items-center justify-center shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-slate-800 text-red-400 border border-red-500/30 flex items-center justify-center shrink-0">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <div className="p-3 rounded-2xl bg-slate-800/80 text-blue-200 rounded-tl-none border border-slate-700 flex items-center gap-2">
-                    <span className="text-xs">Aura está procesando tu voz...</span>
-                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
+                  <div className="p-3 rounded-2xl bg-slate-800/80 text-red-200 rounded-tl-none border border-slate-700 flex items-center gap-2">
+                    <span className="text-xs">Yoguis está procesando tu voz...</span>
+                    <span className="w-2 h-2 rounded-full bg-red-400 animate-ping" />
                   </div>
                 </div>
               )}
@@ -455,24 +455,24 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
         {/* Quick Suggestion Chips */}
         {callState === 'connected' && (
           <div className="px-3 py-2 bg-slate-950 border-t border-slate-800/80 overflow-x-auto no-scrollbar flex items-center gap-2">
-            <span className="text-[10px] text-blue-300/60 shrink-0 font-bold uppercase tracking-wider">
+            <span className="text-[10px] text-red-300/60 shrink-0 font-bold uppercase tracking-wider">
               Pregunta rápida:
             </span>
             <button
               onClick={() => handleSendMessage('¿Quiénes están nominados a Mejor Película?')}
-              className="shrink-0 px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-blue-300 text-[11px] transition-colors hover:text-blue-200 hover:border-blue-500/30"
+              className="shrink-0 px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-red-300 text-[11px] transition-colors hover:text-red-200 hover:border-red-500/30"
             >
               🎬 Mejor Película
             </button>
             <button
               onClick={() => handleSendMessage('¿Quiénes son los nominados a Mejor Actor Principal?')}
-              className="shrink-0 px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-blue-300 text-[11px] transition-colors hover:text-blue-200 hover:border-blue-500/30"
+              className="shrink-0 px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-red-300 text-[11px] transition-colors hover:text-red-200 hover:border-red-500/30"
             >
               🏆 Mejor Actor
             </button>
             <button
               onClick={() => handleSendMessage('Recomiéndame una película de las nominadas')}
-              className="shrink-0 px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-blue-300 text-[11px] transition-colors hover:text-blue-200 hover:border-blue-500/30"
+              className="shrink-0 px-2.5 py-1 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-red-300 text-[11px] transition-colors hover:text-red-200 hover:border-red-500/30"
             >
               ⭐ Recomiéndame una
             </button>
@@ -487,10 +487,10 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
             <div className={`p-2.5 rounded-xl border text-xs flex items-center justify-between transition-all ${
               isListening
                 ? 'bg-red-500/10 border-red-500/40 text-red-300'
-                : 'bg-slate-900 border-slate-800 text-blue-300/80'
+                : 'bg-slate-900 border-slate-800 text-red-300/80'
             }`}>
               <div className="flex items-center gap-2">
-                <div className={`w-2.5 h-2.5 rounded-full ${isListening ? 'bg-red-500 animate-ping' : 'bg-blue-500'}`} />
+                <div className={`w-2.5 h-2.5 rounded-full ${isListening ? 'bg-red-500 animate-ping' : 'bg-red-500'}`} />
                 <span className="font-semibold">
                   {isListening ? '🎤 Micrófono Activo: Escuchando tu voz...' : 'Micrófono en espera'}
                 </span>
@@ -498,7 +498,7 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
               <button
                 type="button"
                 onClick={toggleMicListening}
-                className="text-[11px] underline font-bold hover:text-white transition-colors text-blue-400"
+                className="text-[11px] underline font-bold hover:text-white transition-colors text-red-400"
               >
                 {isListening ? 'Pausar Mic' : 'Activar Micrófono'}
               </button>
@@ -514,7 +514,7 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
               className={`p-3.5 rounded-full transition-all ${
                 isListening
                   ? 'bg-red-500 text-white animate-bounce shadow-lg shadow-red-500/30 ring-4 ring-red-500/30'
-                  : 'bg-slate-800 hover:bg-slate-700 text-blue-200 border border-slate-700'
+                  : 'bg-slate-800 hover:bg-slate-700 text-red-200 border border-slate-700'
               }`}
               title={isListening ? 'Detener micrófono' : 'Hablar por micrófono'}
             >
@@ -535,8 +535,8 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
               onClick={() => setIsSpeakerMuted(!isSpeakerMuted)}
               className={`p-3.5 rounded-full transition-colors ${
                 isSpeakerMuted
-                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/40'
-                  : 'bg-slate-800 hover:bg-slate-700 text-blue-200 border border-slate-700'
+                  ? 'bg-red-500/20 text-red-400 border border-red-500/40'
+                  : 'bg-slate-800 hover:bg-slate-700 text-red-200 border border-slate-700'
               }`}
               title={isSpeakerMuted ? 'Activar altavoz de voz' : 'Silenciar altavoz'}
             >
@@ -563,13 +563,13 @@ export const AICallAssistantModal: React.FC<AICallAssistantModalProps> = ({ isOp
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               disabled={callState !== 'connected' || isListening}
-              className="flex-1 bg-slate-900 border border-slate-800 focus:border-blue-500/50 text-blue-100 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-blue-500/30 placeholder:text-blue-300/40 disabled:opacity-50"
+              className="flex-1 bg-slate-900 border border-slate-800 focus:border-red-500/50 text-red-100 text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-red-500/30 placeholder:text-red-300/40 disabled:opacity-50"
             />
 
             <button
               type="submit"
               disabled={!inputText.trim() || isThinking || callState !== 'connected'}
-              className="p-2.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold transition-colors disabled:opacity-40"
+              className="p-2.5 rounded-xl bg-red-500 hover:bg-red-400 text-slate-950 font-bold transition-colors disabled:opacity-40"
             >
               <Send className="w-4 h-4" />
             </button>
