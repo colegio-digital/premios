@@ -34,25 +34,25 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
       className="scroll-mt-36 group relative bg-slate-900/60 rounded-2xl border border-slate-800/80 p-5 sm:p-7 gold-card-hover overflow-hidden"
     >
       {/* Background Subtle Gradient Glow */}
-      <div className="absolute -top-24 -right-24 w-60 h-60 bg-amber-500/5 blur-3xl pointer-events-none rounded-full group-hover:bg-amber-500/10 transition-colors" />
+      <div className="absolute -top-24 -right-24 w-60 h-60 bg-blue-500/5 blur-3xl pointer-events-none rounded-full group-hover:bg-blue-500/10 transition-colors" />
 
       {/* Header Info */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-800/80 mb-6">
         <div>
           <div className="flex items-center gap-3 mb-2">
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-xs font-bold uppercase tracking-wider">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-mono text-xs font-bold uppercase tracking-wider">
               <Award className="w-3.5 h-3.5" />
               Categoría {String(category.number).padStart(2, '0')} / 14
             </span>
-            <span className="text-xs text-slate-500 font-mono">
+            <span className="text-xs text-blue-300/60 font-mono">
               ID: {category.youtubeId}
             </span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-3">
-            <span>{category.title}</span>
+            <span className="text-blue-100">{category.title}</span>
           </h2>
-          <p className="text-sm text-slate-300 mt-1 max-w-3xl">
+          <p className="text-sm text-blue-200/90 mt-1 max-w-3xl">
             {category.description}
           </p>
         </div>
@@ -61,16 +61,16 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => onOpenGuideForCategory(category.number)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-amber-300 text-xs font-medium border border-slate-700 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-blue-200 hover:text-blue-100 text-xs font-medium border border-slate-700 transition-colors"
             title={`Ver cómo modificar el video o nominados de ${category.title}`}
           >
-            <Code2 className="w-3.5 h-3.5 text-amber-400" />
+            <Code2 className="w-3.5 h-3.5 text-blue-400" />
             <span>Editar Categoría</span>
           </button>
 
           <button
             onClick={handleCopyCategoryLink}
-            className="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-amber-300 border border-slate-700 transition-colors"
+            className="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-blue-200 hover:text-blue-100 border border-slate-700 transition-colors"
             title="Copiar enlace directo a esta categoría"
           >
             {copiedLink ? (
@@ -101,24 +101,24 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
             />
 
             {!isIframeLoaded && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 text-slate-400 text-xs">
-                <Play className="w-8 h-8 text-amber-400 animate-pulse mb-2" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 text-blue-300 text-xs">
+                <Play className="w-8 h-8 text-blue-400 animate-pulse mb-2" />
                 <span>Cargando muestra de YouTube ({category.youtubeId})...</span>
               </div>
             )}
           </div>
 
           {/* YouTube Video Info Bar & Edit Hint */}
-          <div className="flex items-center justify-between text-xs text-slate-400 px-1 bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/50">
+          <div className="flex items-center justify-between text-xs text-blue-300/80 px-1 bg-slate-950/40 p-2.5 rounded-lg border border-slate-800/50">
             <div className="flex items-center gap-2">
-              <Play className="w-3.5 h-3.5 text-amber-400" />
-              <span>Video ID activo: <code className="font-mono text-amber-300 font-semibold">{category.youtubeId}</code></span>
+              <Play className="w-3.5 h-3.5 text-blue-400" />
+              <span>Video ID activo: <code className="font-mono text-blue-300 font-semibold">{category.youtubeId}</code></span>
             </div>
             <a
               href={`https://www.youtube.com/watch?v=${category.youtubeId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-amber-400 transition-colors underline"
+              className="hover:text-blue-300 transition-colors underline"
             >
               Abrir en YouTube ↗
             </a>
@@ -128,11 +128,11 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         {/* Nominees List Container */}
         <div className="lg:col-span-5 flex flex-col gap-3">
           <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-blue-400 flex items-center gap-2">
               <Star className="w-4 h-4" />
               <span>Nominados Oficiales ({category.nominees.length})</span>
             </h3>
-            <span className="text-[11px] text-slate-400">Haz clic para elegir tu favorito</span>
+            <span className="text-[11px] text-blue-300/70">Haz clic para elegir tu favorito</span>
           </div>
 
           <div className="flex flex-col gap-2.5">
@@ -145,28 +145,28 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                   onClick={() => onSelectNominee(category.id, nominee.id)}
                   className={`group/nominee cursor-pointer p-3.5 rounded-xl border transition-all flex items-start justify-between gap-3 ${
                     isSelected
-                      ? 'bg-amber-500/10 border-amber-500/60 shadow-md shadow-amber-500/10'
+                      ? 'bg-blue-500/10 border-blue-500/60 shadow-md shadow-blue-500/10'
                       : 'bg-slate-950/60 hover:bg-slate-800/80 border-slate-800/80 hover:border-slate-700'
                   }`}
                 >
                   <div className="flex items-start gap-3">
                     <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
-                      isSelected ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-400 group-hover/nominee:bg-slate-700 group-hover/nominee:text-amber-300'
+                      isSelected ? 'bg-blue-500 text-slate-950' : 'bg-slate-800 text-blue-300 group-hover/nominee:bg-slate-700 group-hover/nominee:text-blue-200'
                     }`}>
                       {idx + 1}
                     </span>
 
                     <div>
                       <h4 className={`text-sm font-semibold transition-colors ${
-                        isSelected ? 'text-amber-300 font-bold' : 'text-slate-100 group-hover/nominee:text-amber-200'
+                        isSelected ? 'text-blue-300 font-bold' : 'text-slate-100 group-hover/nominee:text-blue-200'
                       }`}>
                         {nominee.name}
                       </h4>
-                      <p className="text-xs text-amber-400/90 font-medium">
+                      <p className="text-xs text-blue-400 font-medium">
                         {nominee.workOrProject}
                       </p>
                       {nominee.description && (
-                        <p className="text-[11px] text-slate-400 mt-0.5">
+                        <p className="text-[11px] text-blue-200/70 mt-0.5">
                           {nominee.description}
                         </p>
                       )}
@@ -178,8 +178,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                     type="button"
                     className={`shrink-0 p-1.5 rounded-lg transition-colors ${
                       isSelected
-                        ? 'bg-amber-500 text-slate-950'
-                        : 'text-slate-500 hover:text-amber-400'
+                        ? 'bg-blue-500 text-slate-950'
+                        : 'text-slate-500 hover:text-blue-400'
                     }`}
                     title={isSelected ? 'Seleccionado como tu favorito' : 'Marcar como mi favorito'}
                   >

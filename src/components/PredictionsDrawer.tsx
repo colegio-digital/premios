@@ -43,22 +43,22 @@ export const PredictionsDrawer: React.FC<PredictionsDrawerProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-amber-500/30 rounded-2xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col">
+      <div className="relative w-full max-w-2xl bg-slate-900 border border-blue-500/30 rounded-2xl shadow-2xl overflow-hidden max-h-[85vh] flex flex-col">
         
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-950/60">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center font-bold">
-              <Trophy className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 text-slate-950 flex items-center justify-center font-bold">
+              <Trophy className="w-5 h-5 text-slate-950" />
             </div>
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <span>Mis Predicciones & Favoritos</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                <span className="text-blue-100">Mis Predicciones & Favoritos</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
                   {votedCount} de {categories.length}
                 </span>
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-blue-200/70">
                 Tus elecciones personales guardadas para la gala
               </p>
             </div>
@@ -76,9 +76,9 @@ export const PredictionsDrawer: React.FC<PredictionsDrawerProps> = ({
         <div className="p-6 overflow-y-auto space-y-3">
           {votedCount === 0 ? (
             <div className="text-center py-12 text-slate-400">
-              <Award className="w-12 h-12 mx-auto text-slate-600 mb-3" />
-              <p className="text-sm font-medium">Aún no has seleccionado ningún favorito.</p>
-              <p className="text-xs text-slate-500 mt-1">
+              <Award className="w-12 h-12 mx-auto text-blue-500/40 mb-3" />
+              <p className="text-sm font-medium text-blue-200">Aún no has seleccionado ningún favorito.</p>
+              <p className="text-xs text-blue-300/60 mt-1">
                 Haz clic sobre los nominados en cada una de las 14 categorías para registrarlos aquí.
               </p>
             </div>
@@ -95,18 +95,18 @@ export const PredictionsDrawer: React.FC<PredictionsDrawerProps> = ({
                   className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950/80 border border-slate-800"
                 >
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-amber-400 uppercase tracking-wider block">
+                    <span className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider block">
                       Categoría {String(cat.number).padStart(2, '0')} • {cat.title}
                     </span>
                     <span className="text-sm font-bold text-slate-100">
                       {nominee.name}
                     </span>
-                    <span className="text-xs text-slate-400 block">
+                    <span className="text-xs text-blue-300/80 block">
                       {nominee.workOrProject}
                     </span>
                   </div>
 
-                  <span className="shrink-0 p-1.5 rounded-full bg-amber-500/10 text-amber-400">
+                  <span className="shrink-0 p-1.5 rounded-full bg-blue-500/10 text-blue-400">
                     <Check className="w-4 h-4" />
                   </span>
                 </div>
@@ -131,7 +131,7 @@ export const PredictionsDrawer: React.FC<PredictionsDrawerProps> = ({
             {votedCount > 0 && (
               <button
                 onClick={handleSharePredictions}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-colors shadow-md shadow-amber-500/20"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold text-xs transition-colors shadow-md shadow-blue-500/20"
               >
                 {copiedSummary ? (
                   <>

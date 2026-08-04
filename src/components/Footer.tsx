@@ -11,14 +11,14 @@ export const Footer: React.FC = () => {
         
         {/* Event Brand Info */}
         <div className="flex items-center gap-3 text-center md:text-left">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 font-bold shrink-0">
             <Trophy className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-white font-bold text-base tracking-wide">
-              {EVENT_INFO.name}
+            <h3 className="text-white font-bold text-base tracking-wide flex items-center gap-2">
+              <span className="text-blue-100">{EVENT_INFO.name}</span>
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-blue-200/70">
               {EVENT_INFO.edition} • {EVENT_INFO.location}
             </p>
           </div>
@@ -26,12 +26,12 @@ export const Footer: React.FC = () => {
 
         {/* Decorative Social Media Icons */}
         <div className="flex items-center gap-3">
-          <span className="text-xs text-slate-500 mr-2 hidden sm:inline">Síguenos:</span>
+          <span className="text-xs text-blue-300/60 mr-2 hidden sm:inline">Síguenos:</span>
           
           <a
             href="#footer"
             onClick={(e) => e.preventDefault()}
-            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/40 hover:bg-slate-800 transition-all duration-200"
+            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-blue-300/80 hover:text-blue-400 hover:border-blue-500/40 hover:bg-slate-800 transition-all duration-200"
             title="Instagram (Decorativo)"
           >
             <Instagram className="w-4 h-4" />
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
           <a
             href="#footer"
             onClick={(e) => e.preventDefault()}
-            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/40 hover:bg-slate-800 transition-all duration-200"
+            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-blue-300/80 hover:text-blue-400 hover:border-blue-500/40 hover:bg-slate-800 transition-all duration-200"
             title="X / Twitter (Decorativo)"
           >
             <Twitter className="w-4 h-4" />
@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
           <a
             href="#footer"
             onClick={(e) => e.preventDefault()}
-            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/40 hover:bg-slate-800 transition-all duration-200"
+            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-blue-300/80 hover:text-blue-400 hover:border-blue-500/40 hover:bg-slate-800 transition-all duration-200"
             title="YouTube (Decorativo)"
           >
             <Youtube className="w-4 h-4" />
@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
           <a
             href="#footer"
             onClick={(e) => e.preventDefault()}
-            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/40 hover:bg-slate-800 transition-all duration-200"
+            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-blue-300/80 hover:text-blue-400 hover:border-blue-500/40 hover:bg-slate-800 transition-all duration-200"
             title="Facebook (Decorativo)"
           >
             <Facebook className="w-4 h-4" />
@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
           <a
             href="#footer"
             onClick={(e) => e.preventDefault()}
-            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/40 hover:bg-slate-800 transition-all duration-200"
+            className="p-2.5 rounded-full bg-slate-900 border border-slate-800 text-blue-300/80 hover:text-blue-400 hover:border-blue-500/40 hover:bg-slate-800 transition-all duration-200"
             title="LinkedIn (Decorativo)"
           >
             <Linkedin className="w-4 h-4" />

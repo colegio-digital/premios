@@ -13,8 +13,8 @@ export const CategoryNavMenu: React.FC<CategoryNavMenuProps> = ({ categories, ac
       <div className="max-w-7xl mx-auto flex items-center gap-3">
         
         {/* Label */}
-        <div className="shrink-0 flex items-center gap-2 pr-3 border-r border-slate-800 text-xs font-semibold text-amber-400 tracking-wider uppercase">
-          <Film className="w-4 h-4 text-amber-400" />
+        <div className="shrink-0 flex items-center gap-2 pr-3 border-r border-slate-800 text-xs font-semibold text-blue-400 tracking-wider uppercase">
+          <Film className="w-4 h-4 text-blue-400" />
           <span className="hidden sm:inline">Categorías:</span>
         </div>
 
@@ -28,12 +28,12 @@ export const CategoryNavMenu: React.FC<CategoryNavMenuProps> = ({ categories, ac
                 href={`#${cat.id}`}
                 className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   isActive
-                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-md shadow-amber-500/20'
-                    : 'bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-amber-300 border border-slate-800'
+                    ? 'bg-gradient-to-r from-blue-500 to-sky-400 text-slate-950 font-bold shadow-md shadow-blue-500/20'
+                    : 'bg-slate-900/90 hover:bg-slate-800 text-blue-200 hover:text-blue-100 border border-slate-800'
                 }`}
               >
                 <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
-                  isActive ? 'bg-slate-950/30 text-slate-950' : 'bg-slate-800 text-amber-400'
+                  isActive ? 'bg-slate-950/30 text-slate-950 font-bold' : 'bg-slate-800 text-blue-400'
                 }`}>
                   {String(cat.number).padStart(2, '0')}
                 </span>

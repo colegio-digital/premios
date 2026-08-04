@@ -15,19 +15,22 @@
   }
 }
 
-/* Custom Gold Glow & Metallic Accents */
-.gold-gradient-text {
-  background: linear-gradient(135deg, #FFF099 0%, #F1C40F 40%, #D4AF37 70%, #996515 100%);
+/* Custom Blue Glow & Metallic Accents */
+.gold-gradient-text,
+.blue-gradient-text {
+  background: linear-gradient(135deg, #93C5FD 0%, #3B82F6 40%, #2563EB 70%, #1D4ED8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-gradient-bg {
-  background: linear-gradient(135deg, #D4AF37 0%, #F1C40F 50%, #B8860B 100%);
+.gold-gradient-bg,
+.blue-gradient-bg {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%);
 }
 
-.gold-border-glow {
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15), inset 0 0 10px rgba(212, 175, 55, 0.05);
+.gold-border-glow,
+.blue-border-glow {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), inset 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
 .gold-card-hover {
@@ -36,8 +39,8 @@
 
 .gold-card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.25), 0 0 15px rgba(212, 175, 55, 0.15);
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3), 0 0 15px rgba(59, 130, 246, 0.2);
 }
 
 /* Custom scrollbar */
@@ -56,6 +59,6 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: #3b82f6;
 }
 
